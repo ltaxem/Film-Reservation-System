@@ -1,0 +1,36 @@
+.root{
+    -fx-background-color: #32025c;
+}
+
+.LoginRegisterbutton{
+    -fx-background-color: #e1673a;
+}
+
+.logo{
+    -fx-background-color: #f07548;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+}
+
+.blue-button-radius {
+    -fx-background-color: #32025c;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 20;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+}
+
+.blue-button {
+    -fx-background-color: #32025c;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+}
+
+.blue-button-NoRadius {
+    -fx-background-color: #32025c;
+    -fx-text-fill: white;
+}
+
+.background-white{
+    -fx-background-color: white;
+}
