@@ -14,3 +14,6 @@ trinti, redaguoti kategorijų sąrašą.
 4. Paleidžiame projektą
 
 ### Kadrai iš projekto
+![login](https://user-images.githubusercontent.com/94172076/179853039-362efaa3-30b9-4390-923a-fb9c03f0b424.png)
+![register](https://user-images.githubusercontent.com/94172076/179853053-5dbe4324-2f8c-43b0-8034-6a4b0baf8515.png)
+![Dashboard](https://user-images.githubusercontent.com/94172076/179854261-5dd73a7f-4f07-4cf3-b7c6-e65e883f95ea.PNG)
