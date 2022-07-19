@@ -4,10 +4,13 @@ Prisijungus administratoriaus role papildomai galime atlikti filmų pridėjimą
 trinti, redaguoti kategorijų sąrašą.
 
 ### Instaliavimas
-1. Klonuojame repozitorija
-```
-git clone https://github.com/ltaxem/Egzaminas.git
-```
-2. Kuriame duomenų bazę
+1. Paleidžiame serverį su duomenų bazę (naudota lokali su [XAMPP](https://www.apachefriends.org/download.html))
+2. Klonuojame repozitorija `git clone https://github.com/ltaxem/Egzaminas.git`
+3. Kuriame duomenų bazę
    - Naršyklėje įvedame url adresą **localhost/phpmyadmin**
-     - Sukuriame db pavadinimu **examv2**
+   - Sukuriame db pavadinimu **examv2**
+   - Spaudžiame **Import** ir spaudžiame **Select a file**
+   - Einame į projektą ..\Egzaminas, susirandame **MySQL.sql** ir spaudžiame **Open**
+4. Paleidžiame projektą
+
+### Kadrai iš projekto
