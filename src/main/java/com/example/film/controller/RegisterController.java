@@ -67,7 +67,7 @@ public class RegisterController {
         Parent root = FXMLLoader.load(MainApplication.class.getResource("login-view.fxml"));
         Stage LoginStage = new Stage();
         LoginStage.setTitle("Prisijungimo langas");
-        LoginStage.setScene(new Scene(root, 600, 400));
+        LoginStage.setScene(new Scene(root, 1185, 660));
         LoginStage.show();
         ((Node) event.getSource()).getScene().getWindow().hide();
     }

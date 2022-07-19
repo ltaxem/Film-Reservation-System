@@ -22,7 +22,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class FilmMoreController  implements Initializable {
+public class FilmMoreController implements Initializable {
     ObservableList<Film> list = FXCollections.observableArrayList();
     @FXML
     private ImageView imageView;
@@ -51,7 +51,7 @@ public class FilmMoreController  implements Initializable {
 
     //TODO Pabaigti su komentarais
     @FXML
-    public void onSendButtonClick(){
+    public void onSendButtonClick() {
         int idLabel2 = Integer.parseInt(idLabel.getText()); // Reiks iraso ID
 
         String comment = "";
@@ -85,13 +85,13 @@ public class FilmMoreController  implements Initializable {
                 summaryLabel.setText(newSelection.getSummary());
                 idLabel.setText(String.valueOf(newSelection.getId()));
 //                commentsLabel.setText(newSelection.getComments());
-
             }
         });
         // Atnaujiname sąrašą
         updateList();
+    }
 
-
+    private void updateList() {
         list.clear();
         String searchField2 = searchField.getText();
         List<Film> filmList = FilmDao.searchByName(searchField2);
@@ -108,9 +108,5 @@ public class FilmMoreController  implements Initializable {
         if (filmList.isEmpty()) {
             statusLabel.setText("Nepavyko atlikti paieška pagal pavadinimą");
         }
-    }
-
-    private void updateList() {
-
     }
 }

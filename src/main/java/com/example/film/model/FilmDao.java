@@ -8,7 +8,7 @@ public class FilmDao {
     //---------------------Kurti įrašą------------------------------
     public static void create(Film film) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String querry = "INSERT INTO `books`(`title`, `summary`, `imdb`, `category`, `image`) VALUES (?, ?, ?, ?, ?)";
+        String querry = "INSERT INTO `films`(`title`, `summary`, `imdb`, `category`, `image`) VALUES (?, ?, ?, ?, ?)";
         try {
             Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
 
@@ -30,7 +30,7 @@ public class FilmDao {
     //---------------------Ieškoti įrašo----------------------------
     public static List<Film> searchByName(String title) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String querry = "SELECT * FROM `books` WHERE `title` LIKE '%" + title + "%'";
+        String querry = "SELECT * FROM `films` WHERE `title` LIKE '%" + title + "%'";
 
         ArrayList<Film> list = new ArrayList<>();
         try {
@@ -61,7 +61,7 @@ public class FilmDao {
     //---------------------Atnaujinti įrašą-------------------------
     public static void update(Film film) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String update = "UPDATE `books` SET `title`= ?,`summary`= ?,`imdb`= ?, `category`= ?,`image`= ? WHERE `id` = ?";
+        String update = "UPDATE `films` SET `title`= ?,`summary`= ?,`imdb`= ?, `category`= ?,`image`= ? WHERE `id` = ?";
         try {
             Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
             PreparedStatement preparedStatement = connection.prepareStatement(update);
@@ -83,7 +83,7 @@ public class FilmDao {
     //---------------------Trinti įrašą-----------------------------
     public static void deleteById(int id) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String delete = "DELETE FROM books WHERE id = ?";
+        String delete = "DELETE FROM films WHERE id = ?";
 
         try {
             Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
@@ -102,7 +102,7 @@ public class FilmDao {
     //------------------Ieskome rezervacija pagal id------------------
     public static Film searchTitleById(int id) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String querry = "SELECT `reservation` FROM books WHERE id = ?";
+        String querry = "SELECT `reservation` FROM films WHERE id = ?";
 
         ArrayList<Film> list = new ArrayList<>();
         try {
@@ -135,7 +135,7 @@ public class FilmDao {
     //---------------------Atnaujiname rezervacija--------------------------
     public static void reserve(Film film) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String update = "UPDATE `books` SET `reservation`= ? WHERE `id` = ?";
+        String update = "UPDATE `films` SET `reservation`= ? WHERE `id` = ?";
         try {
             Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
             PreparedStatement preparedStatement = connection.prepareStatement(update);
@@ -154,7 +154,7 @@ public class FilmDao {
     //---------------------Įrašo paieška pagal id---------------------
     public static Film searchById(int id) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String querry = "SELECT * FROM `books` WHERE `id` = ?";
+        String querry = "SELECT * FROM `films` WHERE `id` = ?";
 
         ArrayList<Film> list = new ArrayList<>();
         try {
@@ -190,7 +190,7 @@ public class FilmDao {
 
     public static void updateComment(Film film){
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String update = "UPDATE `books` SET `comments`= ? WHERE `id` = ?";
+        String update = "UPDATE `films` SET `comments`= ? WHERE `id` = ?";
         try {
             Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
             PreparedStatement preparedStatement = connection.prepareStatement(update);
