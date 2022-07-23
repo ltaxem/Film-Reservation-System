@@ -5,7 +5,7 @@ trinti, redaguoti kategorijų sąrašą.
 
 ### Instaliavimas
 1. Paleidžiame serverį su duomenų bazę (naudota lokali su [XAMPP](https://www.apachefriends.org/download.html))
-2. Klonuojame repozitorija `git clone https://github.com/ltaxem/Egzaminas.git`
+2. Klonuojame repozitorija `https://github.com/ltaxem/Film-Reservation-System.git`
 3. Kuriame duomenų bazę
    - Naršyklėje įvedame url adresą **localhost/phpmyadmin**
    - Sukuriame db pavadinimu **examv2**
