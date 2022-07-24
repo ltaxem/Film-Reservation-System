@@ -10,7 +10,7 @@ trinti, redaguoti kategorijų sąrašą.
    - Naršyklėje įveskite URL adresą **localhost/phpmyadmin**
    - Sukurkite db pavadinimu **examv2**
    - Spauskite **Import**, toliau **Select a file**
-   - Eikite į projektą ..\Egzaminas, susiraskite **MySQL.sql** ir paspauskite **Open**
+   - Eikite į projektą **..\Film-Reservation-System**, susiraskite **MySQL.sql** ir paspauskite **Open**
 4. Paleiskite projektą
 
 ### Taikytos technologijos
