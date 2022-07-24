@@ -1,17 +1,17 @@
 ## Filmų rezervacija
-Nedidelis projektėlis kurtas mokymosi tikslams. Prisijungus vartotojo role galime rezervuoti filmą, taip pat filmą prisidėti į mėgstamų sąrašą.
-Prisijungus administratoriaus role papildomai galime atlikti filmų pridėjimą sąraše, taip pat trynimą ir atnaujinimą. Administratorius gali kurti,
+Mažas projektas, kurtas mokymosi tikslams. Prisijungus vartotojo role, galima rezervuoti filmą, taip pat prisidėti į mėgstamų sąrašą.
+Prisijungus administratoriaus role, galima papildomai pridėti filmus, ištrinti ir atnaujinti. Taip pat administratorius gali kurti,
 trinti, redaguoti kategorijų sąrašą.
 
 ### Instaliavimas
-1. Paleidžiame serverį su duomenų bazę (naudota lokali su [XAMPP](https://www.apachefriends.org/download.html))
-2. Klonuojame repozitorija `https://github.com/ltaxem/Film-Reservation-System.git`
-3. Kuriame duomenų bazę
-   - Naršyklėje įvedame url adresą **localhost/phpmyadmin**
-   - Sukuriame db pavadinimu **examv2**
-   - Spaudžiame **Import** ir spaudžiame **Select a file**
-   - Einame į projektą ..\Egzaminas, susirandame **MySQL.sql** ir spaudžiame **Open**
-4. Paleidžiame projektą
+1. Paleiskite serverį su duomenų baze (naudota lokali su [XAMPP](https://www.apachefriends.org/download.html))
+2. Klonuokite repozitoriją `https://github.com/ltaxem/Film-Reservation-System.git`
+3. Sukurkite duomenų bazę:
+   - Naršyklėje įveskite URL adresą **localhost/phpmyadmin**
+   - Sukurkite db pavadinimu **examv2**
+   - Spauskite **Import**, toliau **Select a file**
+   - Eikite į projektą ..\Egzaminas, susiraskite **MySQL.sql** ir paspauskite **Open**
+4. Paleiskite projektą
 
 ### Taikytos technologijos
 javafx, hibernate, mysql
