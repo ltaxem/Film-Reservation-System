@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class FilmMoreController implements Initializable {
     ObservableList<Film> list = FXCollections.observableArrayList();
+    ObservableList<Comment> commentslist = FXCollections.observableArrayList();
     @FXML
     private ImageView imageView;
 
@@ -37,7 +38,11 @@ public class FilmMoreController implements Initializable {
     private TableView<Film> filmsTableView;
 
     @FXML
-    private TableColumn idColumn, titleColumn, summaryColumn, imdbColumn, categoryColumn;
+    private TableView<Comment> CommentsTableView;
+
+    @FXML
+    private TableColumn idColumn, titleColumn, summaryColumn, imdbColumn, categoryColumn,
+            userNameColumn, commentColumn, dataColumn;
 
     @FXML
     public void onGoBackButtonClick(ActionEvent event) throws IOException {
@@ -49,20 +54,30 @@ public class FilmMoreController implements Initializable {
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
+    @FXML
+    public void onSearchLabelClick() {
+        // Atnaujinamas sąrašas
+        updateList();
+    }
+
     //TODO Pabaigti su komentarais
     @FXML
     public void onSendButtonClick() {
-        int idLabel2 = Integer.parseInt(idLabel.getText()); // Reiks iraso ID
+        String userName = UserSingleton.getInstance().getUserName();
 
-        String comment = "";
-        comment += commentsField.getText() + "\n";
+        // TODO VEIKIA Patikrinam ar pazymejo filma, BET reiks perdaryt su validacijom
+        if(idLabel.getText().equals("ID")){
+            statusLabel.setText("Pasirinkite filmą iš sąrašo");
+            return;
+        }
+        // TODO neleisti tuscio teksto
+        int filmId = Integer.parseInt(idLabel.getText());   // film_id
+        String commentText = commentsField.getText();   // comment
 
-        // Kuriame įrašą DB
-        Film film = new Film(idLabel2, comment);
-        FilmDao.updateComment(film);
-
+        Comment comment = new Comment(userName, filmId, commentText);
+        CommentDao.create(comment);
         statusLabel.setText("Komentaras pridėtas");
-        Film id = FilmDao.searchById(idLabel2);
+        updateCommentsList(Integer.parseInt(idLabel.getText())); // Atnaujinam comments lentele
     }
 
     @Override
@@ -85,6 +100,7 @@ public class FilmMoreController implements Initializable {
                 summaryLabel.setText(newSelection.getSummary());
                 idLabel.setText(String.valueOf(newSelection.getId()));
 //                commentsLabel.setText(newSelection.getComments());
+                updateCommentsList(Integer.parseInt(idLabel.getText()));
             }
         });
         // Atnaujiname sąrašą
@@ -97,16 +113,28 @@ public class FilmMoreController implements Initializable {
         List<Film> filmList = FilmDao.searchByName(searchField2);
         for (Film film : filmList) {
             list.add(new Film(film.getId(), film.getTitle(), film.getSummary(), film.getImdb(), film.getCategory(), film.getReservation(), film.getImage()));
-            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+//            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
             titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-            summaryColumn.setCellValueFactory(new PropertyValueFactory<>("summary"));
-            imdbColumn.setCellValueFactory(new PropertyValueFactory<>("imdb"));
-            categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+//            summaryColumn.setCellValueFactory(new PropertyValueFactory<>("summary"));
+//            imdbColumn.setCellValueFactory(new PropertyValueFactory<>("imdb"));
+//            categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
 
             filmsTableView.setItems(list);
         }
         if (filmList.isEmpty()) {
             statusLabel.setText("Nepavyko atlikti paieška pagal pavadinimą");
+        }
+    }
+
+    private void updateCommentsList(int filmId) {
+        commentslist.clear();
+        List<Comment> commentsList = CommentDao.searchById(filmId);
+        for (Comment comment : commentsList) {
+            commentslist.add(new Comment(comment.getUser_username(), comment.getComment(), comment.getData()));
+            userNameColumn.setCellValueFactory(new PropertyValueFactory<>("user_username"));
+            commentColumn.setCellValueFactory(new PropertyValueFactory<>("comment"));
+            dataColumn.setCellValueFactory(new PropertyValueFactory<>("data"));
+            CommentsTableView.setItems(commentslist);
         }
     }
 }

@@ -34,3 +34,27 @@
 .background-white{
     -fx-background-color: white;
 }
+
+
+.table-header{
+    -fx-base: #32025c;
+    -fx-background-color: #32025c;
+    -fx-table-header-color: transparent;
+}
+
+.list-cell{
+    -fx-alignment: center-left;
+    -fx-base: #32025c;
+    -fx-background-color: #32025c;
+    -fx-table-header-color: transparent;
+    -fx-padding: 15;
+}
+
+.list-cell2{
+    -fx-font-weight: bold;
+    -fx-alignment: center-right;
+    -fx-base: #32025c;
+    -fx-background-color: #32025c;
+    -fx-table-header-color: transparent;
+    -fx-padding: 15;
+}
