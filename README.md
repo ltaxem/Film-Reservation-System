@@ -14,7 +14,7 @@ trinti, redaguoti kategorijų sąrašą.
 4. Paleiskite projektą
 
 ### Taikytos technologijos
-javafx, hibernate, mysql
+javafx, jdbc, mysql
 
 ### Kadrai iš projekto
 - **Prisijungimo forma**
@@ -25,6 +25,9 @@ javafx, hibernate, mysql
 
 - **Pagrindinis**
 ![Dashboard](https://user-images.githubusercontent.com/94172076/179854261-5dd73a7f-4f07-4cf3-b7c6-e65e883f95ea.PNG)
+
+- **Skaityti plačiaus**
+![FilmMore](https://user-images.githubusercontent.com/94172076/181637324-70ce74d2-bbf7-4aac-98df-621ebbad1ec9.PNG)
 
 - **Mėgstamų filmų sąrašas**
 ![liked](https://user-images.githubusercontent.com/94172076/180277354-5c36735e-4c17-46f9-a27f-033b9894d779.PNG)
