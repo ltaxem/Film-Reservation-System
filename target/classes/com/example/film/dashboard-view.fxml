@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.film.controller.DashboardController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.film.controller.DashboardController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1280.0" minWidth="10.0" prefWidth="1280.0" />
     </columnConstraints>
@@ -111,7 +111,10 @@
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </Button>
-                  <ImageView fx:id="imageView" fitHeight="210.0" fitWidth="150.0" layoutX="12.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageView" fitHeight="210.0" fitWidth="150.0" layoutX="12.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../files/Null.png" />
+                     </image></ImageView>
                   <Button alignment="CENTER" layoutX="167.0" layoutY="185.0" mnemonicParsing="false" onAction="#onImageBrowseButtonClick" prefHeight="30.0" prefWidth="34.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="+" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />

@@ -2,6 +2,7 @@ package com.example.film.controller;
 
 import com.example.film.MainApplication;
 import com.example.film.model.*;
+import com.example.film.utils.Validation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -60,24 +61,26 @@ public class FilmMoreController implements Initializable {
         updateList();
     }
 
-    //TODO Pabaigti su komentarais
     @FXML
     public void onSendButtonClick() {
         String userName = UserSingleton.getInstance().getUserName();
-
-        // TODO VEIKIA Patikrinam ar pazymejo filma, BET reiks perdaryt su validacijom
-        if(idLabel.getText().equals("ID")){
-            statusLabel.setText("Pasirinkite filmą iš sąrašo");
-            return;
-        }
-        // TODO neleisti tuscio teksto
-        int filmId = Integer.parseInt(idLabel.getText());   // film_id
         String commentText = commentsField.getText();   // comment
 
-        Comment comment = new Comment(userName, filmId, commentText);
-        CommentDao.create(comment);
-        statusLabel.setText("Komentaras pridėtas");
-        updateCommentsList(Integer.parseInt(idLabel.getText())); // Atnaujinam comments lentele
+        if (idLabel.getText().equals("ID")) {
+            statusLabel.setText("Pasirinkite filmą iš sąrašo");
+        } else {
+            if (!Validation.isValidSummary(commentText)) {              // Patikrinam komentarą naudodami validacja
+                statusLabel.setText("Blogas komentaras xDD");
+            } else {
+                int filmId = Integer.parseInt(idLabel.getText());   // film_id
+
+                Comment comment = new Comment(userName, filmId, commentText);
+                CommentDao.create(comment);
+                statusLabel.setText("Komentaras pridėtas");
+                updateCommentsList(Integer.parseInt(idLabel.getText())); // Atnaujinam comments lentele
+                commentsField.clear();
+            }
+        }
     }
 
     @Override

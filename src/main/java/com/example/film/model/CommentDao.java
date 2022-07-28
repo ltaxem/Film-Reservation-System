@@ -27,7 +27,7 @@ public class CommentDao {
 
     public static List<Comment> searchById(int filmId) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String querry = "SELECT * FROM `comments` WHERE `film_id` =" + filmId + "";
+        String querry = "SELECT * FROM `comments` WHERE `film_id` =" + filmId + " ORDER BY `comments`.`data` DESC";
 
         ArrayList<Comment> list = new ArrayList<>();
         try {
