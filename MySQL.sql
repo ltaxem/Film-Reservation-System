@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2022 at 01:49 PM
+-- Generation Time: Jul 28, 2022 at 11:08 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -42,6 +42,30 @@ INSERT INTO `category` (`id`, `categoryTitle`) VALUES
 (28, 'Poezija, esė'),
 (29, 'Romantika'),
 (34, 'Komedija');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `user_username` varchar(63) NOT NULL,
+  `film_id` int(11) NOT NULL,
+  `comment` varchar(512) NOT NULL,
+  `data` text NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_username`, `film_id`, `comment`, `data`) VALUES
+(53, 'admin', 1, 'Man patiko', '2022-07-28 22:10:34'),
+(54, 'admin', 3, 'Prastai', '2022-07-28 22:10:43'),
+(55, 'petras', 1, 'Filmas labai labai labai geras', '2022-07-28 22:14:00'),
+(56, 'zygis', 1, 'Patiko šis filmas. Geresnis lyginant už visas praeitas serijas', '2022-07-28 22:14:46');
 
 -- --------------------------------------------------------
 
@@ -88,9 +112,9 @@ CREATE TABLE `films` (
 --
 
 INSERT INTO `films` (`id`, `title`, `summary`, `imdb`, `category`, `reservation`, `image`, `comments`) VALUES
-(1, 'Haris Poteris ir Išminties akmuo', 'Haris Poteris - vienuolikmetis našlaitis su akinukais, vargstantis klaikioje dėdės ir tetos Durslių šeimynėlėje.', '7.6', 'Fantastika', 1, 'file:/C:/Users/acer/Pictures/testams/3.PNG', 'fsfdsfsdfsd\n'),
-(3, 'Haris Poteris ir paslapčių kambarys', 'Hariui atostogos pas nedorėlius Durslius buvo liūdnos, užtat Hogvartse laukia nauji pavojai ir naujos mįslės. ', '7.7', 'Fantastika', 2, 'file:/C:/Users/acer/Pictures/testams/1.png', 'dsdasdasda\n'),
-(29, 'Parazitas', 'Bedarbis Kitaekas suklastoja dokumentus ir tamp....', '8.5', 'Komedija', NULL, 'file:/C:/Users/acer/IdeaProjects/Egzaminas/src/main/resources/files/Null.png', NULL);
+(1, 'Haris Poteris ir Išminties akmuo', 'Haris Poteris - vienuolikmetis našlaitis su akinukais, vargstantis klaikioje dėdės ir tetos Durslių šeimynėlėje.', '7.6', 'Fantastika', 1, 'file:/C:/Users/acer/Pictures/testams/3.PNG', NULL),
+(3, 'Haris Poteris ir paslapčių kambarys', 'Hariui atostogos pas nedorėlius Durslius buvo liūdnos, užtat Hogvartse laukia nauji pavojai ir naujos mįslės. ', '7.7', 'Fantastika', 2, 'file:/C:/Users/acer/Pictures/testams/1.png', NULL),
+(41, 'Parazitas', 'Bedarbis Kitaekas suklastoja dokumentus ir tamp....', '8.5', 'Tikros istorijos', NULL, 'file:/C:/Users/acer/IdeaProjects/Film-Reservation-System/src/main/resources/files/Null.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -113,7 +137,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `admin`) VALUES
 (1, 'admin', '$2a$12$OdvVI9dpBfEAUWHuHXCISeKasEb2uMjzwae7YxwBLnqfUPNPLqBKO', 'admin@gmail.com', 1),
 (2, 'useris', '$2a$12$767AyOr5ebFvnMwhvBgas.PMKs1BiNgW0ZhqzTkyqupDxR1gV0CoK', 'useris@useris.com', 0),
-(3, 'vipas', '$2a$12$R8V2ravDCQ1nqo0dxHAHDOWRkfbMC49zhOPjh77MuWW9mV8yEG6AS', 'vipas@vipas.com', 1);
+(3, 'vipas', '$2a$12$R8V2ravDCQ1nqo0dxHAHDOWRkfbMC49zhOPjh77MuWW9mV8yEG6AS', 'vipas@vipas.com', 1),
+(9, 'petras', '$2a$12$rEFN01XTBST1Vo6f2BZEmORpVUC924JFPdQnNPmglb8ZluMv998EC', 'petras@gmail.com', 0),
+(10, 'zygis', '$2a$12$ytiFsNOrB0ye0s4faAuaveGJZhIpwxDiTVtt28gF6vMW3XhRKIXWK', 'zygis@gmail.com', 0);
 
 --
 -- Indexes for dumped tables
@@ -123,6 +149,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `admin`) VALUES
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -154,6 +186,12 @@ ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
+--
 -- AUTO_INCREMENT for table `favorite`
 --
 ALTER TABLE `favorite`
@@ -163,13 +201,13 @@ ALTER TABLE `favorite`
 -- AUTO_INCREMENT for table `films`
 --
 ALTER TABLE `films`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
