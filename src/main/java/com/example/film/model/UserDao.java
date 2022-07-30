@@ -72,6 +72,31 @@ public class UserDao {
         return username2;
     }
 
+    //---------------------Įrašo paieška pagal username, kuris grazins username jei ji aptiks---------------------
+    public static String searchByUsernameReturnUsername(String username) {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
+        String querry = "SELECT * FROM `users` WHERE `username` = ?";
+
+        String username2 = "";
+        try {
+            Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement(querry);
+
+            preparedStatement.setString(1, username);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                username2 = resultSet.getString("username");
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return username2;
+    }
+
     //---------------------Įrašo paieška pagal username---------------------
     public static int searchByUsernameReturnID(String username) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
@@ -94,6 +119,31 @@ public class UserDao {
             e.printStackTrace();
         }
         return username2;
+    }
+
+    //---------------------Įrašo paieška pagal email, kuris grazins email jei ji aptiks---------------------
+    public static String searchByEmailReturnEmail(String email) {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
+        String querry = "SELECT * FROM `users` WHERE `email` = ?";
+
+        String returnEmail = "";
+        try {
+            Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement(querry);
+
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                returnEmail = resultSet.getString("email");
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return returnEmail;
     }
 
 }

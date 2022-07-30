@@ -1,5 +1,7 @@
 package com.example.film.utils;
 
+import com.example.film.model.UserDao;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,5 +59,17 @@ public class Validation {
         Pattern pattern = Pattern.compile(IMDB_REGEX_PATTERN);
         Matcher matcher = pattern.matcher(imdb);
         return matcher.find();
+    }
+
+    public static boolean chechUsernameDublication(String username){
+        String getUsername = UserDao.searchByUsernameReturnUsername(username);
+        if(getUsername.equals(username)) return false;
+        else return true;
+    }
+
+    public static boolean chechEmailDublication(String email){
+        String getEmail = UserDao.searchByEmailReturnEmail(email);
+        if(getEmail.equals(email)) return false;
+        else return true;
     }
 }
