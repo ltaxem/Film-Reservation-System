@@ -170,7 +170,8 @@ public class FilmDao {
                         resultSet.getString("title"),
                         resultSet.getString("summary"),
                         resultSet.getString("imdb"),
-                        resultSet.getString("category")
+                        resultSet.getString("category"),
+                        resultSet.getString("image")
                 ));
             }
             preparedStatement.close();

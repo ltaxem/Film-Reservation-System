@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -56,12 +57,6 @@ public class FilmMoreController implements Initializable {
     }
 
     @FXML
-    public void onSearchLabelClick() {
-        // Atnaujinamas sąrašas
-        updateList();
-    }
-
-    @FXML
     public void onSendButtonClick() {
         String userName = UserSingleton.getInstance().getUserName();
         String commentText = commentsField.getText();   // comment
@@ -93,40 +88,17 @@ public class FilmMoreController implements Initializable {
         String role = UserDao.searchByUsername(username);
         groupLabel.setText(role);
 
-        filmsTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                searchField.setText(newSelection.getTitle());
-                titleLabel.setText(newSelection.getTitle());
-                imageView.setImage(new Image(newSelection.getImage()));
-                imdbLabel.setText(newSelection.getImdb());
-                categorylabel.setText(newSelection.getCategory());
-                summaryLabel.setText(newSelection.getSummary());
-                idLabel.setText(String.valueOf(newSelection.getId()));
-//                commentsLabel.setText(newSelection.getComments());
-                updateCommentsList(Integer.parseInt(idLabel.getText()));
-            }
-        });
-        // Atnaujiname sąrašą
-        updateList();
-    }
+        // Parodomas pasirinkto filmo ID
+        String filmId = FilmIdSingleton.getInstance().getId();
+        Film filmById = FilmDao.searchById(Integer.parseInt(filmId));
 
-    private void updateList() {
-        list.clear();
-        String searchField2 = searchField.getText();
-        List<Film> filmList = FilmDao.searchByName(searchField2);
-        for (Film film : filmList) {
-            list.add(new Film(film.getId(), film.getTitle(), film.getSummary(), film.getImdb(), film.getCategory(), film.getReservation(), film.getImage()));
-//            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-            titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-//            summaryColumn.setCellValueFactory(new PropertyValueFactory<>("summary"));
-//            imdbColumn.setCellValueFactory(new PropertyValueFactory<>("imdb"));
-//            categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-
-            filmsTableView.setItems(list);
-        }
-        if (filmList.isEmpty()) {
-            statusLabel.setText("Nepavyko atlikti paieška pagal pavadinimą");
-        }
+        idLabel.setText(filmId);
+        titleLabel.setText(filmById.getTitle());
+        imageView.setImage(new Image(filmById.getImage()));
+        imdbLabel.setText(filmById.getImdb());
+        categorylabel.setText(filmById.getCategory());
+        summaryLabel.setText(filmById.getSummary());
+        updateCommentsList(Integer.parseInt(idLabel.getText())); // Atnaujinam comments lentele
     }
 
     private void updateCommentsList(int filmId) {

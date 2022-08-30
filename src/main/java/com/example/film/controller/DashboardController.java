@@ -46,6 +46,9 @@ public class DashboardController implements Initializable {
     @FXML
     private Label statusLabel, idLabel, groupLabel, usernameLabel;
 
+    @FXML
+    private Button moreButton;
+
     private String imageFile;
     ObservableList<Film> list = FXCollections.observableArrayList();
 
@@ -287,6 +290,7 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        moreButton.setDisable(true);
         // Pridedame reikšmes į ChoiceBox
         List<Category> sarasas = CategoryDao.searchAll();
         choiceBoxCategory.getItems().addAll(sarasas);
@@ -307,6 +311,14 @@ public class DashboardController implements Initializable {
                 summaryField.setText(newSelection.getSummary());
                 imdbField.setText(newSelection.getImdb());
                 // Nededam kategorijos nes ji gali buti istrinta
+
+                // Filmo ID idedam i singleton
+                String id2 = idField.getText();
+                FilmIdSingleton id = FilmIdSingleton.getInstance();
+                id.setId(id2);
+                moreButton.setDisable(false);
+//                String id3 = FilmIdSingleton.getInstance().getId();
+//                System.out.println("Filmo Id: " + id3);
             }
         });
 

@@ -34,7 +34,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="798.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMoreButtonClick" prefHeight="30.0" prefWidth="123.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="SKAITYTI PLAČIAU" textFill="WHITE" />
+                  <Button fx:id="moreButton" layoutX="798.0" layoutY="9.0" mnemonicParsing="false" onAction="#onMoreButtonClick" prefHeight="30.0" prefWidth="123.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="SKAITYTI PLAČIAU" textFill="WHITE" />
                   <Button layoutX="468.0" layoutY="9.0" mnemonicParsing="false" onAction="#onFavoritesListButtonClick" prefHeight="30.0" prefWidth="182.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="MĖGSTAMŲ FILMŲ SĄRAŠAS" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />

@@ -19,15 +19,6 @@
          <center>
             <Pane prefHeight="613.0" prefWidth="980.0" styleClass="LoginRegisterbutton" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="filmsTableView" layoutX="499.0" layoutY="51.0" prefHeight="250.0" prefWidth="475.0">
-                    <columns>
-                      <TableColumn fx:id="titleColumn" prefWidth="474.0" resizable="false" text="Filmo pavadinimas" />
-                    </columns>
-                  </TableView>
-                  <TextField fx:id="searchField" layoutX="14.0" layoutY="8.0" onAction="#onSearchLabelClick" prefHeight="35.0" prefWidth="322.0" promptText="Paieška">
-                     <font>
-                        <Font size="13.0" />
-                     </font></TextField>
                   <Label fx:id="usernameLabel" alignment="CENTER" layoutX="824.0" layoutY="6.0" prefHeight="19.0" prefWidth="142.0" textFill="#32025c" visible="false">
                      <font>
                         <Font size="13.0" />
@@ -42,14 +33,14 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <Label fx:id="titleLabel" layoutX="6.0" layoutY="51.0" prefHeight="30.0" prefWidth="475.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="Filmo Pavadinimas" textFill="WHITE">
+                  <Label fx:id="titleLabel" layoutX="220.0" layoutY="16.0" prefHeight="43.0" prefWidth="752.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="Filmo Pavadinimas" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="16.0" />
                      </font>
                      <padding>
                         <Insets left="10.0" />
                      </padding></Label>
-                  <Label fx:id="idLabel" alignment="CENTER_RIGHT" layoutX="418.0" layoutY="51.0" prefHeight="30.0" prefWidth="61.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="ID" textFill="WHITE">
+                  <Label fx:id="idLabel" alignment="CENTER_RIGHT" layoutX="891.0" layoutY="16.0" prefHeight="43.0" prefWidth="79.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="ID" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="16.0" />
                      </font>
@@ -61,11 +52,11 @@
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font></Button>
-                  <ImageView fx:id="imageView" fitHeight="210.0" fitWidth="150.0" layoutX="6.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageView" fitHeight="291.0" fitWidth="278.0" layoutX="6.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../files/Null.png" />
                      </image></ImageView>
-                  <Label fx:id="imdbLabel" alignment="CENTER" layoutX="166.0" layoutY="90.0" prefHeight="43.0" prefWidth="35.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="0.0" textFill="WHITE">
+                  <Label fx:id="imdbLabel" alignment="CENTER" layoutX="220.0" layoutY="66.0" prefHeight="43.0" prefWidth="35.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="0.0" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="16.0" />
                      </font>
@@ -73,12 +64,12 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <Label layoutX="201.0" layoutY="90.0" prefHeight="43.0" prefWidth="81.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="/10 (IMDB)" textFill="WHITE">
+                  <Label layoutX="255.0" layoutY="66.0" prefHeight="43.0" prefWidth="81.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="/10 (IMDB)" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="summaryLabel" alignment="TOP_LEFT" contentDisplay="TOP" graphicTextGap="50.0" layoutX="167.0" layoutY="142.0" prefHeight="159.0" prefWidth="313.0" styleClass="root" stylesheets="@style.css" text="Aprašymas" textFill="WHITE" wrapText="true">
+                  <Label fx:id="summaryLabel" alignment="TOP_LEFT" contentDisplay="TOP" graphicTextGap="50.0" layoutX="220.0" layoutY="118.0" prefHeight="188.0" prefWidth="752.0" styleClass="root" stylesheets="@style.css" text="Aprašymas" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Calibri" size="16.0" />
                      </font>
@@ -89,12 +80,12 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="categorylabel" alignment="CENTER" layoutX="305.0" layoutY="90.0" prefHeight="43.0" prefWidth="175.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="Kategorija" textFill="WHITE">
+                  <Label fx:id="categorylabel" alignment="CENTER" layoutX="344.0" layoutY="66.0" prefHeight="43.0" prefWidth="175.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="Kategorija" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="6.0" layoutY="322.0" prefHeight="30.0" prefWidth="969.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="Komentarai" textFill="WHITE">
+                  <Label layoutX="6.0" layoutY="327.0" prefHeight="43.0" prefWidth="969.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="Komentarai" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="16.0" />
                      </font>
@@ -102,7 +93,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="commentsLabel" alignment="TOP_LEFT" contentDisplay="TOP" graphicTextGap="50.0" layoutX="6.0" layoutY="361.0" prefHeight="176.0" prefWidth="969.0" styleClass="root" stylesheets="@style.css" textFill="WHITE" wrapText="true">
+                  <Label fx:id="commentsLabel" alignment="TOP_LEFT" contentDisplay="TOP" graphicTextGap="50.0" layoutX="6.0" layoutY="378.0" prefHeight="176.0" prefWidth="969.0" styleClass="root" stylesheets="@style.css" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Calibri" size="16.0" />
                      </font>
@@ -113,7 +104,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="commentsField" alignment="TOP_LEFT" layoutX="7.0" layoutY="547.0" prefHeight="63.0" prefWidth="880.0" promptText="Rašyti komentarą">
+                  <TextField fx:id="commentsField" alignment="TOP_LEFT" layoutX="7.0" layoutY="565.0" prefHeight="63.0" prefWidth="880.0" promptText="Rašyti komentarą">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -121,11 +112,11 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <Button layoutX="894.0" layoutY="546.0" mnemonicParsing="false" onAction="#onSendButtonClick" prefHeight="33.0" prefWidth="80.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="Siųsti" textFill="#32025c">
+                  <Button layoutX="894.0" layoutY="564.0" mnemonicParsing="false" onAction="#onSendButtonClick" prefHeight="33.0" prefWidth="80.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="Siųsti" textFill="#32025c">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <TableView fx:id="CommentsTableView" layoutX="7.0" layoutY="364.0" prefHeight="169.0" prefWidth="965.0" styleClass="table-header" stylesheets="@style.css">
+                  <TableView fx:id="CommentsTableView" layoutX="7.0" layoutY="378.0" prefHeight="169.0" prefWidth="965.0" styleClass="table-header" stylesheets="@style.css">
                     <columns>
                       <TableColumn fx:id="userNameColumn" editable="false" prefWidth="106.0" resizable="false" sortType="DESCENDING" sortable="false" styleClass="list-cell2" />
                       <TableColumn fx:id="commentColumn" editable="false" prefWidth="678.0" resizable="false" sortType="DESCENDING" sortable="false" styleClass="list-cell" />
