@@ -151,6 +151,7 @@ public class DashboardController implements Initializable {
             } else {
                 int idField3 = Integer.parseInt(idField.getText());
                 FilmDao.deleteById(idField3);
+
                 statusLabel.setText("Pavyko sėkmingai ištrinti įrašą");
                 // Atnaujinamas sąrašas
                 updateList();
@@ -279,13 +280,22 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    public void onMoreButtonClick(ActionEvent event)  throws IOException {
-        Parent root = FXMLLoader.load(MainApplication.class.getResource("films-more-view.fxml"));
-        Stage LoginStage = new Stage();
-        LoginStage.setTitle("Skaityti plašiau");
-        LoginStage.setScene(new Scene(root, 980, 720));
-        LoginStage.show();
-        ((Node) event.getSource()).getScene().getWindow().hide();
+    public void onMoreButtonClick(ActionEvent event) throws IOException {
+        String filmId = FilmIdSingleton.getInstance().getId();
+        Film filmById = FilmDao.searchById(Integer.parseInt(filmId));
+
+        if (filmById == null) {
+            statusLabel.setText("Pasirinkite filmą, apie kurį norite skaityti plačiau");
+            moreButton.setDisable(true);
+        } else {
+            Parent root = FXMLLoader.load(MainApplication.class.getResource("films-more-view.fxml"));
+            Stage LoginStage = new Stage();
+            LoginStage.setTitle("Skaityti plašiau");
+            LoginStage.setScene(new Scene(root, 980, 720));
+            LoginStage.show();
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        }
+
     }
 
     @Override
