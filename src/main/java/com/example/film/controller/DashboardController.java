@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -41,7 +42,10 @@ public class DashboardController implements Initializable {
     private TableView<Film> filmTableView;
 
     @FXML
-    private TableColumn idColumn, titleColumn, summaryColumn, imdbColumn, categoryColumn, reservationColumn, imageColumn;
+    private TableColumn idColumn, titleColumn, summaryColumn, imdbColumn, categoryColumn, imageColumn;
+
+    @FXML
+    private TableColumn<Film, Integer> reservationColumn;
 
     @FXML
     private Label statusLabel, idLabel, groupLabel, usernameLabel;
@@ -51,6 +55,7 @@ public class DashboardController implements Initializable {
 
     private String imageFile;
     ObservableList<Film> list = FXCollections.observableArrayList();
+
 
     @FXML
     public void onSearchLabelClick() {
@@ -222,6 +227,18 @@ public class DashboardController implements Initializable {
                     FilmDao.reserve(movie2);
                     statusLabel.setText("Jums pavyko rezervuoti filmą");
 
+//                    filmTableView.setRowFactory(tv -> new TableRow<Film>() {
+//                        @Override
+//                        protected void updateItem(Film item, boolean empty) {
+//                            super.updateItem(item, empty);
+//                            Film film1 = getTableView().getItems().get(getIndex());
+//                            if (film1.getReservation() == 0){
+//                                setStyle("-fx-background-color: yellow"); //The background of the cell in yellow
+//                                setTextFill(Color.RED); //The text in red
+//                            }
+//                        }
+//                    });
+
                     // Atnaujinamas sąrašas
                     updateList();
                 } else if (film.getReservation() == userID) {
@@ -346,6 +363,45 @@ public class DashboardController implements Initializable {
 
         // Atnaujinamas sąrašas
         updateList();
+
+        // Nuspalvinam rezervacijos laukelius
+        // https://stackoverflow.com/questions/30889732/javafx-tableview-change-row-color-based-on-column-value
+        reservationColumn.setCellFactory(column -> {
+            return new TableCell<Film, Integer>() {
+                @Override
+                protected void updateItem(Integer item, boolean empty) {
+                    super.updateItem(item, empty); //This is mandatory
+
+                    if (item == null || empty) { //If the cell is empty
+                        setText(null);
+                        setStyle("");
+                    } else { //If the cell is not empty
+
+                        setText(String.valueOf(item)); //Put the String data in the cell
+
+                        //We get here all the info of the Film of this row
+                        Film auxPerson = getTableView().getItems().get(getIndex());
+
+                        // Style on my ID
+                        int userID = UserDao.searchByUsernameReturnID(usernameLabel.getText());
+
+                        if (auxPerson.getReservation() == userID) {
+                            setTextFill(Color.WHITE); //The text in WHITE
+                            setText("Rezervuota");
+                            setStyle("-fx-background-color: #5954bf; -fx-alignment: center"); //The background of the cell in yellow
+                        } else if (auxPerson.getReservation() == 0) {
+                            setTextFill(Color.WHITE); //The text in WHITE
+                            setText("");
+                            setStyle("-fx-background-color: #35dc29"); //The background of the cell in yellow
+                        } else {
+                            setTextFill(Color.WHITE); //The text in WHITE
+                            setText("");
+                            setStyle("-fx-background-color: #dc2929"); //The background of the cell in yellow
+                        }
+                    }
+                }
+            };
+        });
     }
 
     public void updateList() {
@@ -360,7 +416,6 @@ public class DashboardController implements Initializable {
             imdbColumn.setCellValueFactory(new PropertyValueFactory<>("imdb"));
             categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
             reservationColumn.setCellValueFactory(new PropertyValueFactory<>("reservation"));
-            imageColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
 
             filmTableView.setItems(list);
         }
