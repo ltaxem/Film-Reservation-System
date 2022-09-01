@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2022 at 04:19 PM
+-- Generation Time: Sep 01, 2022 at 10:05 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -24,34 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books`
---
-
-CREATE TABLE `books` (
-  `id` int(11) NOT NULL,
-  `title` varchar(63) DEFAULT NULL,
-  `summary` varchar(127) DEFAULT NULL,
-  `isbn` varchar(63) DEFAULT NULL,
-  `pages` int(11) DEFAULT NULL,
-  `category` varchar(127) DEFAULT NULL,
-  `reservation` int(11) DEFAULT NULL,
-  `image` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `books`
---
-
-INSERT INTO `books` (`id`, `title`, `summary`, `isbn`, `pages`, `category`, `reservation`, `image`) VALUES
-(1, 'Haris Poteris ir Išminties akmuo', 'Haris Poteris - vienuolikmetis našlaitis su akinukais, vargstantis klaikioje dėdės ir tetos Durslių šeimynėlėje.', '12-3456-789-1', 248, 'Poezija, esė', 1, 'file:/C:/Users/acer/Pictures/testams/3.PNG'),
-(3, 'Haris Poteris ir paslapčių kambarys', 'Hariui atostogos pas nedorėlius Durslius buvo liūdnos, užtat Hogvartse laukia nauji pavojai ir naujos mįslės. ', '12-3456-789-2', 272, 'Fantastika', 2, 'file:/C:/Users/acer/Pictures/testams/1.png'),
-(17, 'Intuicija', 'Jaunas niujorkietis Timotis Fišeris yra vidutinio pasisekimo sulaukiančių detektyvų rašytojas...', '12-3456-789-3', 382, 'Drama', NULL, 'file:/C:/Users/acer/Pictures/testams/3.PNG'),
-(18, 'Valdovės gambitas', 'Automobilio avarijoje žuvus motinai, vos aštuonerių sulaukusi Betė Harmon išsiunčiama į našlaičių globos namus...', '12-3456-789-4', 384, 'Klasika', NULL, 'file:/C:/Users/acer/Pictures/testams/4.PNG'),
-(19, 'Švelnumas pragare', 'Vytautas Pliura (1951-2011) - poetas, dramaturgas, anglų kalba kūręs lietuvių išeivio', '12-3456-789-5', 184, 'Poezija, esė', NULL, 'file:/C:/Users/acer/Pictures/testams/Null.png');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `category`
 --
 
@@ -65,11 +37,38 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `categoryTitle`) VALUES
-(3, 'Fantastika'),
-(9, 'Drama'),
 (10, 'Tikros istorijos'),
-(13, 'Klasika'),
-(14, 'Poezija, esė');
+(26, 'Fantastika'),
+(28, 'Poezija, esė'),
+(29, 'Romantika'),
+(34, 'Komedija'),
+(35, 'Animaciniai'),
+(36, 'Dramos'),
+(38, 'Serialas');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `user_username` varchar(63) NOT NULL,
+  `film_id` int(11) NOT NULL,
+  `comment` varchar(512) NOT NULL,
+  `data` text NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_username`, `film_id`, `comment`, `data`) VALUES
+(53, 'admin', 1, 'Man patiko', '2022-07-28 22:10:34'),
+(54, 'admin', 3, 'Prastai', '2022-07-28 22:10:43'),
+(55, 'petras', 1, 'Filmas labai labai labai geras', '2022-07-28 22:14:00'),
+(56, 'zygis', 1, 'Patiko šis filmas. Geresnis lyginant už visas praeitas serijas', '2022-07-28 22:14:46');
 
 -- --------------------------------------------------------
 
@@ -82,8 +81,7 @@ CREATE TABLE `favorite` (
   `user_id` int(11) DEFAULT NULL,
   `title` varchar(63) DEFAULT NULL,
   `summary` varchar(127) DEFAULT NULL,
-  `isbn` varchar(63) DEFAULT NULL,
-  `pages` int(11) DEFAULT NULL,
+  `imdb` varchar(63) DEFAULT NULL,
   `category` varchar(63) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -91,14 +89,41 @@ CREATE TABLE `favorite` (
 -- Dumping data for table `favorite`
 --
 
-INSERT INTO `favorite` (`id`, `user_id`, `title`, `summary`, `isbn`, `pages`, `category`) VALUES
-(11, 2, 'Haris Poteris', 'Raganos raganiai...', '12-3456-789-1', 1318, 'Romantinis'),
-(24, 2, 'Haris Poteris 2', 'Raganos raganiai... ', '12-3456-789-3', 1450, 'Fantastiniai'),
-(25, 2, 'Haris Poteris3', 'Raganos raganiai...', '12-3456-789-3', 1488, 'Fantastinis'),
-(26, 2, 'Haris Poteris3', 'Raganos raganiai...', '12-3456-789-3', 1488, 'Fantastinis'),
-(33, 1, 'Haris Poteris ir Išminties akmuo', 'Haris Poteris - vienuolikmetis našlaitis su akinukais, vargstantis klaikioje dėdės ir tetos Durslių šeimynėlėje.', '12-3456-789-1', 248, 'Poezija, esė'),
-(35, 1, 'Intuicija', 'Jaunas niujorkietis Timotis Fišeris yra vidutinio pasisekimo sulaukiančių detektyvų rašytojas...', '12-3456-789-3', 382, 'Drama'),
-(37, 1, 'Švelnumas pragare', 'Vytautas Pliura (1951-2011) - poetas, dramaturgas, anglų kalba kūręs lietuvių išeivio', '12-3456-789-5', 184, 'Poezija, esė');
+INSERT INTO `favorite` (`id`, `user_id`, `title`, `summary`, `imdb`, `category`) VALUES
+(110, 1, 'Parazitas', 'Bedarbis Kitaekas suklastoja dokumentus ir tamp....', '8.5', 'Tikros istorijos');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `films`
+--
+
+CREATE TABLE `films` (
+  `id` int(11) NOT NULL,
+  `title` varchar(63) DEFAULT NULL,
+  `summary` varchar(512) DEFAULT NULL,
+  `imdb` varchar(63) DEFAULT NULL,
+  `category` varchar(127) DEFAULT NULL,
+  `reservation` int(11) DEFAULT NULL,
+  `image` text DEFAULT NULL,
+  `comments` varchar(127) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `films`
+--
+
+INSERT INTO `films` (`id`, `title`, `summary`, `imdb`, `category`, `reservation`, `image`, `comments`) VALUES
+(1, 'Haris Poteris ir Išminties akmuo', 'Tai istorija apie berniuką Harį Poterį, kuris 10 metų pragyveno po laiptais ir tikėjo apgaulingais dėdės ir tetos pasakojimais, kad jo tėvai žuvo autoavarijoje, nors iš tikrųjų jie buvo nužudyti per Helovyno šventę.', '7.6', 'Fantastika', 1, 'file:./src/main/resources/images/3.PNG', NULL),
+(3, 'Haris Poteris ir paslapčių kambarys', 'Hariui atostogos pas nedorėlius Durslius buvo liūdnos, užtat Hogvartse laukia nauji pavojai ir naujos mįslės. ', '7.7', 'Fantastika', 2, 'file:./src/main/resources/images/1.PNG', NULL),
+(41, 'Parazitas', 'Bedarbis Kitaekas suklastoja dokumentus ir tamp....', '8.5', 'Tikros istorijos', NULL, 'file:./src/main/resources/images/Null.PNG', NULL),
+(80, 'Šviesmetis', 'Vieno mylimiausių Žaislų istorijos filmų personažo laukia netikėtos pažintys, smagi muzika ir, žinoma, pavojingi, bet linksmi nuotykiai.', '5.8', 'Animaciniai', 1, 'file:./src/main/resources/images/Null.PNG', NULL),
+(82, 'Baigiamieji egzaminai', 'Romeo - vidutinio amžiaus gydytojas, gyvenantis kompromisų kupiną, bet ganėtinai patogų gyvenimą mažame Transilvanijos miestelyje. ', '7.3', 'Dramos', 36, 'file:./src/main/resources/images/Null.PNG', NULL),
+(86, 'Samarietis', 'Jaunas berniukas sužino, kad superherojus, kuris, kaip manoma, dingo po epiškos kovos prieš dvidešimt metų, galbūt vis dar gyvas.', '5.9', 'Fantastika', NULL, 'file:./src/main/resources/images/Null.PNG', NULL),
+(87, 'Didesnis', 'Įkvepianti istorija apie kultūrizmo pionierius Džo ir Beną Weiderius. Nepaisydami didžiulio skurdo ir tvyrojuso antisemitizmo, broliai įveikė visas kliūtis, kad sukurtų imperiją ir įkvėptų ateities kartas.', '6.3', 'Tikros istorijos', NULL, 'file:./src/main/resources/images/Null.PNG', NULL),
+(88, 'Virtuvės istorijos', 'Įspūdingai sėkmingai maisto tinklaraštininkei Kacey pasiūloma galimybė parašyti savo kulinarijos knygą. Vienintelė problema ta, kad ji nėra labai gera virėja. Tačiau su šefo Gavino pagalba jai gali pasisekti.', '5.1', 'Romantika', 35, 'file:./src/main/resources/images/Null.PNG', NULL),
+(89, 'Spąstai', 'Filmas pasakoja istoriją apie praeito amžiaus 6-ojo dešimtmečio politinių kalinių bejėgiškumą ir brutalumą, naudojamą, siekiant priversti duoti melagingus parodymus. ', '5.8', 'Tikros istorijos', NULL, 'file:./src/main/resources/images/Null.PNG', NULL),
+(91, 'Valdovės gambitas', '8-metė našlaitė, Betė Harmon yra tyli, užsidariusi ir sunkiai pastebima. Kol nesužaidžia pirmosios šachmatų partijos. Jos pojūčiai ir mąstymas ima aštrėti ir pirmą kartą gyvenime, ji ima jausti kontrolę. Būdama 16-os, ji dalyvavo JAV čempionate. Betei perėjus į profesionalų lygą, jos atsiskyrimas vis labiau gąsdina ir ji ima svarstyti apie pabėgimą. Paremta Volterio Tiuviso (Walter Tevis) knyga.', '8.6', 'Serialas', NULL, 'file:./src/main/resources/images/4.PNG', NULL);
 
 -- --------------------------------------------------------
 
@@ -121,17 +146,15 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `admin`) VALUES
 (1, 'admin', '$2a$12$OdvVI9dpBfEAUWHuHXCISeKasEb2uMjzwae7YxwBLnqfUPNPLqBKO', 'admin@gmail.com', 1),
 (2, 'useris', '$2a$12$767AyOr5ebFvnMwhvBgas.PMKs1BiNgW0ZhqzTkyqupDxR1gV0CoK', 'useris@useris.com', 0),
-(3, 'vipas', '$2a$12$R8V2ravDCQ1nqo0dxHAHDOWRkfbMC49zhOPjh77MuWW9mV8yEG6AS', 'vipas@vipas.com', 1);
+(3, 'vipas', '$2a$12$R8V2ravDCQ1nqo0dxHAHDOWRkfbMC49zhOPjh77MuWW9mV8yEG6AS', 'vipas@vipas.com', 1),
+(10, 'zygis', '$2a$12$ytiFsNOrB0ye0s4faAuaveGJZhIpwxDiTVtt28gF6vMW3XhRKIXWK', 'zygis@gmail.com', 0),
+(26, 'petras', '$2a$12$J7ZZdah0UsdQFUWwnrufS.jUoR2oy2zc5chJ6jeOT/KTicivfZyRC', 'admin@gmail.com', 0),
+(35, 'jonas123', '$2a$12$QvKqVfLh39rifJQsYXaRuOWcsJXN3svcyQ5hH3lMnRMd62J3RJp9O', 'jonas123@gmail.com', 0),
+(36, 'petras123', '$2a$12$7runTEg.j0CPDIomldR4K.RlIq7jPz3abnAC6aW/FDAwlesongvhC', 'petras123@gmail.com', 0);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `books`
---
-ALTER TABLE `books`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
@@ -140,9 +163,21 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `favorite`
 --
 ALTER TABLE `favorite`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `films`
+--
+ALTER TABLE `films`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -156,28 +191,34 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `books`
---
-ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `favorite`
 --
 ALTER TABLE `favorite`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+
+--
+-- AUTO_INCREMENT for table `films`
+--
+ALTER TABLE `films`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

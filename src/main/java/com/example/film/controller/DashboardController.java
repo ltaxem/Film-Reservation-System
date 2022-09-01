@@ -387,16 +387,16 @@ public class DashboardController implements Initializable {
 
                         if (auxPerson.getReservation() == userID) {
                             setTextFill(Color.WHITE); //The text in WHITE
-                            setText("Rezervuota");
+                            setText("reserved");
                             setStyle("-fx-background-color: #5954bf; -fx-alignment: center"); //The background of the cell in yellow
                         } else if (auxPerson.getReservation() == 0) {
                             setTextFill(Color.WHITE); //The text in WHITE
-                            setText("");
-                            setStyle("-fx-background-color: #35dc29"); //The background of the cell in yellow
+                            setText("available");
+                            setStyle("-fx-background-color: #35dc29; -fx-alignment: center"); //The background of the cell in yellow
                         } else {
                             setTextFill(Color.WHITE); //The text in WHITE
-                            setText("");
-                            setStyle("-fx-background-color: #dc2929"); //The background of the cell in yellow
+                            setText("booked");
+                            setStyle("-fx-background-color: #dc2929; -fx-alignment: center"); //The background of the cell in yellow
                         }
                     }
                 }

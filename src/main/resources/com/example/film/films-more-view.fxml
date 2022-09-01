@@ -54,7 +54,7 @@
                      </font></Button>
                   <ImageView fx:id="imageView" fitHeight="291.0" fitWidth="278.0" layoutX="6.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../files/Null.png" />
+                        <Image url="@../../../images/Null.png" />
                      </image></ImageView>
                   <Label fx:id="imdbLabel" alignment="CENTER" layoutX="220.0" layoutY="66.0" prefHeight="43.0" prefWidth="35.0" styleClass="blue-button-NoRadius" stylesheets="@style.css" text="0.0" textFill="WHITE">
                      <font>
