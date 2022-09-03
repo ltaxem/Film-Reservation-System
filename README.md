@@ -26,11 +26,11 @@ javafx, jdbc, mysql
 
 
 - **Pagrindinis**
-![Dashboard](https://user-images.githubusercontent.com/94172076/179854261-5dd73a7f-4f07-4cf3-b7c6-e65e883f95ea.PNG)
+![Dashboard](https://user-images.githubusercontent.com/94172076/188004139-baed717d-2f7a-4615-94b7-699243f2bf5b.PNG)
 
 
 - **Skaityti plačiau**
-![FilmMore](https://user-images.githubusercontent.com/94172076/181637324-70ce74d2-bbf7-4aac-98df-621ebbad1ec9.PNG)
+![FilmMore](https://user-images.githubusercontent.com/94172076/188006447-dbbef9eb-d835-468d-84d4-8a0f638ba4f9.PNG)
 
 
 - **Mėgstamų filmų sąrašas**
