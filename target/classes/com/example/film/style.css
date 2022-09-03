@@ -58,3 +58,12 @@
     -fx-table-header-color: transparent;
     -fx-padding: 15;
 }
+
+.list-cell3{
+    -fx-font-weight: italic;
+    -fx-alignment: center-right;
+    -fx-base: #32025c;
+    -fx-background-color: #32025c;
+    -fx-table-header-color: transparent;
+    -fx-padding: 15;
+}

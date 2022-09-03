@@ -26,9 +26,10 @@ public class UserDao {
 
     public static String getBCryptPassword(String username) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/examV2";
-        String querry = "SELECT password FROM `users` WHERE `username` = ?";
+        String querry = "SELECT password, username FROM `users` WHERE `username` = ?";
 
         String passwordBCrypted = "";
+        String usernameMatch = "";
         try {
             Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
             PreparedStatement preparedStatement = connection.prepareStatement(querry);
@@ -36,7 +37,10 @@ public class UserDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                passwordBCrypted = resultSet.getString("password");
+                usernameMatch = resultSet.getString("username");
+                if(username.equals(usernameMatch)){                                 // Tikrinam ar sutampa field username su db username, jei sutampa grazinam password BCrypted
+                    passwordBCrypted = resultSet.getString("password");
+                }
             }
             preparedStatement.close();
             connection.close();
